@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="log_in">Увійти в \n<b>CafePOS</b></string>
+    <string name="log">Логін</string>
+    <string name="password">Пароль</string>
+    <string name="email">Email</string>
+    <string name="no_acc">Немає аккаунта?</string>
+    <string name="go">Увійти</string>
+    <string name="registration">Реєстрація</string>
+    <string name="registr">Зареєструватися</string>
+    <string name="add_to_menu">Додати до меню</string>
+    <string name="name">Назва</string>
+    <string name="price">Ціна</string>
+    <string name="add_photo">Додати фото</string>
+    <string name="choose_category">Оберіть категорію</string>
+    <string name="portion">Порція</string>
+    <string name="add">Додати</string>
+    <string name="order">Замовлення</string>
+    <string name="menu">Меню</string>
+    <string name="settings">Налаштування</string>
+    <string name="coffee">Кава</string>
+    <string name="cake">Десерти</string>
+    <string name="grams">грами (г)</string>
+    <string name="grams_abr">г</string>
+    <string name="milliliters">мілілітри (мл)</string>
+    <string name="milliliters_abr">мл</string>
+    <string name="pieces">штуки (шт)</string>
+    <string name="pieces_abr">шт</string>
+    <string name="cafe_name">Кавʼярня у Хвітсерка</string>
+    <string name="not_saving">Оберіть всі поля та додайте фото</string>
+
+
+</resources>
