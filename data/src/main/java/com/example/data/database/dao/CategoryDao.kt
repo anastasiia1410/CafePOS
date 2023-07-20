@@ -19,6 +19,9 @@ interface CategoryDao {
     @Query("SELECT * FROM category WHERE id = :id")
     suspend fun getCategoryById(id: Long): CategoryDatabase
 
+    @Query("SELECT COUNT(*) FROM menu")
+    suspend fun categoryCount(): Int
+
     @Query("SELECT * FROM category")
     @Transaction
     suspend fun getMenuCategoriesWithMenuItems(): List<MenuWithCategory>

@@ -9,9 +9,7 @@ import kotlinx.coroutines.withContext
 
 class MenuViewModel(private val menuRepository: MenuRepository) : ViewModel() {
 
-    fun loadMenu(categoryId: Long) = viewModelScope.launch {
-        withContext(Dispatchers.IO) {
-
-        }
+    fun insert() = viewModelScope.launch {
+        menuRepository.insert()
     }
 }

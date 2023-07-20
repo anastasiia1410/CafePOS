@@ -24,8 +24,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
+        viewModel.insert()
         binding.btAdd.setOnClickListener {
             homeViewModel.navigateToAddToMenu()
         }

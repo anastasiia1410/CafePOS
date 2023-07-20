@@ -14,6 +14,9 @@ interface PortionDao {
     @Query("SELECT * FROM portion")
     suspend fun getAllPortions(): List<PortionDatabase>
 
+    @Query("SELECT COUNT(*) FROM portion")
+    suspend fun portionCount(): Int
+
     @Query("SELECT * FROM portion WHERE id = :id")
     suspend fun getPortionById(id: Long): PortionDatabase
 }

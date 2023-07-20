@@ -15,7 +15,7 @@ import com.example.data.database.entity.PortionDatabase
         CategoryDatabase::class,
         PortionDatabase::class
     ],
-    version = 2
+    version = 1
 )
 internal abstract class AppDatabase : RoomDatabase() {
     abstract fun menuDao(): MenuDao

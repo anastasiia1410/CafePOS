@@ -28,6 +28,8 @@
     <string name="pieces_abr">шт</string>
     <string name="cafe_name">Кавʼярня у Хвітсерка</string>
     <string name="not_saving">Оберіть всі поля та додайте фото</string>
+    <string name="select_category">Оберіть категорію товару</string>
+    <string name="select_portion_type">Оберіть тип порції</string>
 
 
 </resources>
