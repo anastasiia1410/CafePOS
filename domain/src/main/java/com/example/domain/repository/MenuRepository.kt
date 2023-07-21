@@ -9,6 +9,10 @@ interface MenuRepository {
 
     suspend fun insert()
 
+    suspend fun insertCategory(category: Category)
+
+    suspend fun insertPortion(portion: Portion)
+
     suspend fun getAllMenu(): List<Category>
 
     suspend fun getCategoryById(id: Long): Category

@@ -1,5 +1,6 @@
 package com.example.presentation.core
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     private var _binding: VB? = null
@@ -55,5 +57,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
     protected fun showToast(@StringRes text: Int) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_LONG).show()
+    }
+
+    protected fun showSnackBar(view: View, @StringRes text: Int) {
+        Snackbar.make(view, text, Snackbar.LENGTH_LONG).show()
     }
 }

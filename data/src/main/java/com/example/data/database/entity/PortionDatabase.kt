@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "portion")
 data class PortionDatabase(
-    @PrimaryKey(autoGenerate = false)
-    val id : Long,
-    val portionType : PortionTypeDatabase
+    @PrimaryKey(autoGenerate = true)
+    val id : Long = 0L,
+    val portionType : String,
+    val portionUnit : String
 )

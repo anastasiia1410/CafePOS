@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.presentation.R
 import com.example.presentation.core.BaseFragment
 import com.example.presentation.databinding.FragmentLogInBinding
 import com.example.presentation.screens.authorization.LoadState
@@ -40,6 +41,27 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.httpExFlow.collect {
+                showSnackBar(binding.btGo, R.string.http_exeption)
+                binding.progressBar.isVisible = false
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.unknownHostExcFlow.collect {
+                showSnackBar(binding.btGo, R.string.unknown_host_exeption)
+                binding.progressBar.isVisible = false
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.socketTimeoutExFlow.collect {
+                showSnackBar(binding.btGo, R.string.time_out_socket_ex)
+                binding.progressBar.isVisible = false
+            }
+        }
+
         with(binding) {
             btGo.setOnClickListener {
                 viewModel.logIn(

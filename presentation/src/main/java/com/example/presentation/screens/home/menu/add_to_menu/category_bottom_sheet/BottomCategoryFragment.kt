@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.databinding.BottomSheetCategoryBinding
@@ -47,6 +48,9 @@ class BottomCategoryFragment : BottomSheetDialogFragment() {
                 dismiss()
             }
         }
+
+
+
         lifecycleScope.launch { viewModel.categoryFlow.collect { categoryAdapter.updateItems(it) } }
     }
 }

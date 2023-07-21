@@ -59,8 +59,7 @@ class AddMenuViewModel(
                 price = price.toDouble(),
                 portionId = portion!!.id,
                 portionSize = portionSize.toInt(),
-                categoryId = categoryMut!!.id,
-                menuId = 0
+                categoryId = categoryMut!!.id
             )
             menuRepository.insertMenu(menu)
         }

@@ -56,7 +56,7 @@ class AddToMenuFragment : BaseFragment<FragmentAddToMenuBinding>() {
                 val portion =
                     BundleCompat.getParcelable(bundle, BUNDLE_KEY_TYPE, Portion::class.java)
                         ?: error("empty parcelable")
-                binding.tvPortionType.text = portion.portionType.name
+                binding.tvPortionType.text = portion.portionType
                 viewModel.savePortion(portion)
             }
 
@@ -107,6 +107,8 @@ class AddToMenuFragment : BaseFragment<FragmentAddToMenuBinding>() {
         const val BUNDLE_KEY_CATEGORY = "bundleKeyCategory"
         const val REQUEST_TYPE = "requestKeyType"
         const val BUNDLE_KEY_TYPE = "bundleKeyType"
+        const val ADD_NEW_PORTION_TYPE = "newPortionTypeKey"
+        const val REQUEST_NEW_TYPE = "requestKeyNewType"
     }
 
 }

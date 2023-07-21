@@ -5,7 +5,6 @@ import com.example.domain.entity.Category
 import com.example.domain.entity.CategoryIcon
 import com.example.domain.entity.Menu
 import com.example.domain.entity.Portion
-import com.example.domain.entity.PortionType
 import com.example.domain.mapper.toCategory
 import com.example.domain.mapper.toCategoryDatabase
 import com.example.domain.mapper.toMenu
@@ -41,9 +40,9 @@ internal class MenuRepositoryImpl(private val databaseManager: DatabaseManager) 
             databaseManager.insertCategory(cakeCategory.toCategoryDatabase())
             databaseManager.insertCategory(otherCategory.toCategoryDatabase())
 
-            val portionG = Portion(1L, PortionType.Grams)
-            val portionMl = Portion(2L, PortionType.Millilitres)
-            val portionPc = Portion(3L, PortionType.Pieces)
+            val portionG = Portion(1L, "грами", "г")
+            val portionMl = Portion(2L, "мілілітри", "мл")
+            val portionPc = Portion(3L, "штуки", "шт")
 
             databaseManager.insertPortion(portionG.toPortionDatabase())
             databaseManager.insertPortion(portionMl.toPortionDatabase())
@@ -91,6 +90,14 @@ internal class MenuRepositoryImpl(private val databaseManager: DatabaseManager) 
             databaseManager.insertMenu(cheesecake.toMenuDatabase())
             databaseManager.insertMenu(napoleon.toMenuDatabase())
         }
+    }
+
+    override suspend fun insertCategory(category: Category) {
+        databaseManager.insertCategory(category.toCategoryDatabase())
+    }
+
+    override suspend fun insertPortion(portion: Portion) {
+        databaseManager.insertPortion(portion.toPortionDatabase())
     }
 
     override suspend fun getAllMenu(): List<Category> {

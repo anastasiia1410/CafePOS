@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "category")
 data class CategoryDatabase(
-        @PrimaryKey(autoGenerate = false)
-        val id: Long,
+        @PrimaryKey(autoGenerate = true)
+        val id: Long = 0L,
         val categoryName: String,
-        val icon: CategoryIconDatabase
+        val icon: String
 )
