@@ -4,7 +4,6 @@ import com.example.data.database.entity.CategoryDatabase
 import com.example.data.database.entity.MenuDatabase
 import com.example.data.database.entity.PortionDatabase
 import com.example.domain.entity.Category
-import com.example.domain.entity.CategoryIcon
 import com.example.domain.entity.Menu
 import com.example.domain.entity.Portion
 
@@ -14,19 +13,19 @@ fun Menu.toMenuDatabase(): MenuDatabase {
         title = this.title,
         image = this.image,
         categoryId = this.categoryId,
-        portionId = this.portionId,
+        portionId = this.portion.id,
         price = this.price,
         portionSize = this.portionSize
     )
 }
 
-fun MenuDatabase.toMenu(): Menu {
+fun MenuDatabase.toMenu(portion: PortionDatabase): Menu {
     return Menu(
         menuId = this.menuId,
         title = this.title,
         image = this.image,
         categoryId = this.categoryId,
-        portionId = this.portionId,
+        portion = portion.toPortion(),
         price = this.price,
         portionSize = this.portionSize
     )
@@ -36,7 +35,7 @@ fun Category.toCategoryDatabase(): CategoryDatabase {
     return CategoryDatabase(
         id = this.id,
         categoryName = this.categoryName,
-        icon = this.icon.name
+        icon = this.icon
     )
 }
 
@@ -45,7 +44,7 @@ fun CategoryDatabase.toCategory(itemsMenu: List<Menu>): Category {
     return Category(
         id = this.id,
         categoryName = this.categoryName,
-        icon = CategoryIcon.getCategoryIconByName(icon),
+        icon = this.icon,
         itemsMenu = itemsMenu
     )
 }

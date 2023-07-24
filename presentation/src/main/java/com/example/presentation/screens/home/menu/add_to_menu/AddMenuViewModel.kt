@@ -23,20 +23,17 @@ class AddMenuViewModel(
 
     val pathFlow = MutableStateFlow<String?>(null)
     val categoryFlow = MutableSharedFlow<Category>()
-    private var uri: Uri? = null
     private var categoryMut: Category? = null
     private var portion: Portion? = null
 
     fun createCameraFile(): Uri {
         val file: File = createTemporaryFile(context)
         pathFlow.value = file.absolutePath
-        val result = FileProvider.getUriForFile(
+        return FileProvider.getUriForFile(
             context,
             "com.example.cafepos.presentation.fileprovider",
             file
         )
-        uri = result
-        return result
     }
 
 
@@ -57,7 +54,7 @@ class AddMenuViewModel(
                 title = title,
                 image = pathFlow.value!!,
                 price = price.toDouble(),
-                portionId = portion!!.id,
+                portion = portion!!,
                 portionSize = portionSize.toInt(),
                 categoryId = categoryMut!!.id
             )

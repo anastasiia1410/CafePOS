@@ -25,7 +25,11 @@ class MenuAdapter : RecyclerView.Adapter<MenuAdapter.VH>() {
                 .into(ivImage)
             tvPrice.text =
                 tvPrice.context.getString(R.string.pattern_portion_price, menu.price.toString())
-            tvPortion.text = menu.portionSize.toString()
+            tvPortion.text = tvPortion.context.getString(
+                R.string.pattern_portion_size,
+                menu.portionSize,
+                menu.portion.portionUnit
+            )
         }
     }
 

@@ -22,7 +22,4 @@ val presentationModule = module {
     viewModel { NavigationViewModel(get()) }
     viewModel { AddNewCategoryViewModel(get()) }
     viewModel { AddNewPortionViewModel(get()) }
-
-
-
 }

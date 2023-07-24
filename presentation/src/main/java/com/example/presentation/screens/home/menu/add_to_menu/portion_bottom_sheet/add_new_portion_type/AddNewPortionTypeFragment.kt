@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.domain.entity.Portion
-import com.example.presentation.databinding.BottomSheetAddNewPortionTypeBinding
+import com.example.presentation.databinding.BsAddNewPortionTypeBinding
 import com.example.presentation.screens.home.menu.add_to_menu.portion_bottom_sheet.BottomPortionFragment
 import com.example.presentation.utils.inputText
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddNewPortionTypeFragment : BottomSheetDialogFragment() {
-    private var _binding: BottomSheetAddNewPortionTypeBinding? = null
+    private var _binding: BsAddNewPortionTypeBinding? = null
     private val binding get() = _binding ?: error("binding is null")
     private val viewModel by viewModel<AddNewPortionViewModel>()
 
@@ -21,7 +21,7 @@ class AddNewPortionTypeFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = BottomSheetAddNewPortionTypeBinding.inflate(inflater, container, false)
+        _binding = BsAddNewPortionTypeBinding.inflate(inflater, container, false)
         return binding.root
     }
 

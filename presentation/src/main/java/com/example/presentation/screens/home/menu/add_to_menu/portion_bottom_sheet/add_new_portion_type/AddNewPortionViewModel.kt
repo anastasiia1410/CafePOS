@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.Portion
 import com.example.domain.repository.MenuRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class AddNewPortionViewModel(private val menuRepository: MenuRepository) : ViewModel() {

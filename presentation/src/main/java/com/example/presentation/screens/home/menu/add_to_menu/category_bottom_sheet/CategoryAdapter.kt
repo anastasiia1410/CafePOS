@@ -10,7 +10,7 @@ import com.example.presentation.utils.feelCategories
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.VH>() {
 
-    private var categories = emptyList<Category>()
+    private var categories: MutableList<Category> = mutableListOf()
     var onCategoryClick: ((Category) -> Unit)? = null
 
 
@@ -32,7 +32,8 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.VH>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newCategory: List<Category>) {
-        categories = newCategory
+        categories.clear()
+        categories.addAll(newCategory)
         notifyDataSetChanged()
     }
 

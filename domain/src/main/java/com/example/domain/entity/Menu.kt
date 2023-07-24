@@ -5,7 +5,7 @@ data class Menu(
     val title : String,
     val image : String,
     val categoryId : Long,
-    val portionId : Long,
+    val portion : Portion,
     val portionSize : Int,
     val price : Double
 )

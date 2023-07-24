@@ -2,7 +2,6 @@ package com.example.domain.repository
 
 import com.example.data.database.DatabaseManager
 import com.example.domain.entity.Category
-import com.example.domain.entity.CategoryIcon
 import com.example.domain.entity.Menu
 import com.example.domain.entity.Portion
 import com.example.domain.mapper.toCategory
@@ -19,21 +18,21 @@ internal class MenuRepositoryImpl(private val databaseManager: DatabaseManager) 
         if (databaseManager.categoryCount() == 0) {
             val coffeeCategory = Category(
                 id = 1L,
-                categoryName = "Coffe",
-                icon = CategoryIcon.Coffee,
+                categoryName = "Coffee",
+                icon = "Coffee",
                 itemsMenu = emptyList()
 
             )
             val cakeCategory = Category(
                 id = 2L,
                 categoryName = "Cake",
-                icon = CategoryIcon.Desert,
+                icon = "Cake",
                 itemsMenu = emptyList()
             )
             val otherCategory = Category(
                 id = 3L,
                 categoryName = "Other",
-                icon = CategoryIcon.Other,
+                icon = "Other",
                 itemsMenu = emptyList()
             )
             databaseManager.insertCategory(coffeeCategory.toCategoryDatabase())
@@ -53,7 +52,7 @@ internal class MenuRepositoryImpl(private val databaseManager: DatabaseManager) 
                 title = "Latte",
                 image = "https://i.pinimg.com/564x/39/35/d7/3935d7a96e33f58d5ff217963304ce52.jpg",
                 price = 75.00,
-                portionId = portionMl.id,
+                portion = portionMl,
                 portionSize = 320,
                 categoryId = coffeeCategory.id
             )
@@ -62,7 +61,7 @@ internal class MenuRepositoryImpl(private val databaseManager: DatabaseManager) 
                 title = "Americano",
                 image = "https://i.pinimg.com/564x/8a/50/9e/8a509e80a255b25b54774a4437debf0e.jpg",
                 price = 40.00,
-                portionId = portionMl.id,
+                portion = portionMl,
                 portionSize = 150,
                 categoryId = coffeeCategory.id
             )
@@ -71,7 +70,7 @@ internal class MenuRepositoryImpl(private val databaseManager: DatabaseManager) 
                 title = "Cheesecake",
                 image = "https://i.pinimg.com/474x/53/ff/e2/53ffe2ce6d416ba5dd9492580c4e8251.jpg",
                 price = 60.00,
-                portionId = portionG.id,
+                portion = portionG,
                 portionSize = 300,
                 categoryId = cakeCategory.id
             )
@@ -80,7 +79,7 @@ internal class MenuRepositoryImpl(private val databaseManager: DatabaseManager) 
                 title = "Napoleon",
                 image = "https://i.pinimg.com/474x/16/bb/a1/16bba120b5c194ce99785d48f0d1cba8.jpg",
                 price = 55.00,
-                portionId = portionG.id,
+                portion = portionG,
                 portionSize = 250,
                 categoryId = cakeCategory.id
             )
@@ -104,7 +103,7 @@ internal class MenuRepositoryImpl(private val databaseManager: DatabaseManager) 
         val menuWithCategoryAndPortion = databaseManager.getMenuWithCategoryAndPortion()
         return menuWithCategoryAndPortion.map { menuWithCategory ->
             val menuItems = menuWithCategory.menuList.map { menuWithPortion ->
-                menuWithPortion.menu.toMenu()
+                menuWithPortion.menu.toMenu(menuWithPortion.portionDatabase)
             }
             menuWithCategory.category.toCategory(menuItems)
         }
@@ -113,11 +112,6 @@ internal class MenuRepositoryImpl(private val databaseManager: DatabaseManager) 
     override suspend fun getCategoryById(id: Long): Category {
         val categoryById = databaseManager.getCategoryById(id)
         return categoryById.toCategory(emptyList())
-    }
-
-    override suspend fun getPortionById(id: Long): Portion {
-        val portionById = databaseManager.getPortionById(id)
-        return portionById.toPortion()
     }
 
     override suspend fun getPortionView(): List<Portion> {

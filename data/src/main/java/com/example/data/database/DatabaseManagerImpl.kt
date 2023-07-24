@@ -19,10 +19,6 @@ class DatabaseManagerImpl(context: Context) : DatabaseManager {
         db.categoryDao().insertCategory(category)
     }
 
-    override suspend fun getAllCategories(): List<CategoryDatabase> {
-        return db.categoryDao().getAllCategories()
-    }
-
     override suspend fun getCategoryById(id: Long): CategoryDatabase {
         return db.categoryDao().getCategoryById(id)
     }
@@ -43,20 +39,8 @@ class DatabaseManagerImpl(context: Context) : DatabaseManager {
         return db.portionDao().getPortionById(id)
     }
 
-    override suspend fun portionCount(): Int {
-        return db.portionDao().portionCount()
-    }
-
     override suspend fun insertMenu(menu: MenuDatabase) {
         db.menuDao().insertMenu(menu)
-    }
-
-    override suspend fun getAllMenu(): List<MenuDatabase> {
-        return db.menuDao().getAllMenu()
-    }
-
-    override suspend fun getMenuPositionsByCategory(id: Long): List<MenuDatabase> {
-        return db.menuDao().getMenuPositionsByCategory(id)
     }
 
     override suspend fun getMenuWithCategoryAndPortion(): List<MenuWithCategory> {

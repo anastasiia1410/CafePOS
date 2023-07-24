@@ -17,8 +17,6 @@ interface MenuRepository {
 
     suspend fun getCategoryById(id: Long): Category
 
-    suspend fun getPortionById(id: Long): Portion
-
     suspend fun getPortionView(): List<Portion>
 
     suspend fun insertMenu(menu: Menu)

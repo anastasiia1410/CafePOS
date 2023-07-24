@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.databinding.BottomSheetCategoryBinding
 import com.example.presentation.screens.home.menu.add_to_menu.AddToMenuFragment
 import com.example.presentation.screens.home.menu.add_to_menu.AddToMenuFragment.Companion.REQUEST_CATEGORY
+import com.example.presentation.screens.home.menu.add_to_menu.category_bottom_sheet.add_new_category.AddNewCategoryFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -49,7 +49,11 @@ class BottomCategoryFragment : BottomSheetDialogFragment() {
             }
         }
 
-
+        binding.tvAddNewCategory.setOnClickListener {
+            val newCategoryFragment = AddNewCategoryFragment()
+            newCategoryFragment.show(parentFragmentManager, null)
+            dismiss()
+        }
 
         lifecycleScope.launch { viewModel.categoryFlow.collect { categoryAdapter.updateItems(it) } }
     }
