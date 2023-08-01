@@ -1,11 +1,13 @@
 package com.example.data.network
 
+import com.example.common.exeptions.APIException
 import com.example.data.network.entity.request.SignUpRequest
 import com.example.data.preference.Preference
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -38,7 +40,11 @@ internal class NetworkManagerImpl(private val preference: Preference) : NetworkM
     }
 
     override suspend fun logIn(password: String, login: String) {
-        val response = api.logIn(login, password)
-        preference.saveToken(response.token)
+        try {
+            val response = api.logIn(login, password)
+            preference.saveToken(response.token)
+        } catch (t: HttpException) {
+            throw APIException(statusCode = t.code())
+        }
     }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.os.BundleCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
@@ -14,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.domain.entity.Portion
+import com.example.presentation.R
 import com.example.presentation.core.BaseFragment
 import com.example.presentation.databinding.FragmentAddToMenuBinding
 import com.example.presentation.screens.home.menu.add_to_menu.category_bottom_sheet.BottomCategoryFragment

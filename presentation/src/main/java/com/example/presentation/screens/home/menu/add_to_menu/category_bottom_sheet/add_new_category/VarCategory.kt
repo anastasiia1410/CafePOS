@@ -5,7 +5,8 @@ import com.example.presentation.R
 data class VarCategory(
     val categoryName: String,
     val icon: Int,
-)  {
+    var isChoose: Boolean = false
+) {
     companion object {
         fun insertCategory(): List<VarCategory> {
             val list = mutableListOf<VarCategory>()
@@ -17,6 +18,7 @@ data class VarCategory(
             list.add(VarCategory("Бургер", R.drawable.ic_burger))
             list.add(VarCategory("Сніданок", R.drawable.ic_breakfast))
             return list
+
         }
     }
 }

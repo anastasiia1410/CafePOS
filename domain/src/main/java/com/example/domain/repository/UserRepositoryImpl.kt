@@ -10,5 +10,6 @@ internal class UserRepositoryImpl(private val networkManager: NetworkManager) : 
 
     override suspend fun logIn(password: String, login: String) {
         networkManager.logIn(password, login)
+
     }
 }

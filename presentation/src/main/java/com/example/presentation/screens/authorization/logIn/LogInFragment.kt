@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.load.HttpException
+import com.example.common.exeptions.APIException
 import com.example.presentation.R
 import com.example.presentation.core.BaseFragment
 import com.example.presentation.databinding.FragmentLogInBinding
@@ -46,13 +46,10 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
             }
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.exFlow.collect { throwable ->
-                Log.e("Exeption", "$throwable")
                 when (throwable) {
-                    is HttpException -> {
-                        val code = throwable.statusCode
-                        Log.e("Status code", "$code")
+                    is APIException -> {
                         when (throwable.statusCode) {
                             400 -> {
                                 showSnackBar(binding.btGo, R.string.http_exeption)
@@ -74,23 +71,23 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
                         viewModel.loadingFlow.emit(LoadState.Ready)
                     }
                 }
+            }
+        }
 
+        with(binding) {
+            btGo.setOnClickListener {
+                viewModel.logIn(
+                    etLogin.inputText(),
+                    etPassword.inputText()
+                )
+            }
 
-                with(binding) {
-                    btGo.setOnClickListener {
-                        viewModel.logIn(
-                            etLogin.inputText(),
-                            etPassword.inputText()
-                        )
-                    }
-
-                    tvNoAcc.setOnClickListener {
-                        val action =
-                            LogInFragmentDirections.actionLogInFragmentToRegistrationFragment()
-                        findNavController().navigate(action)
-                    }
-                }
+            tvNoAcc.setOnClickListener {
+                val action =
+                    LogInFragmentDirections.actionLogInFragmentToRegistrationFragment()
+                findNavController().navigate(action)
             }
         }
     }
 }
+
